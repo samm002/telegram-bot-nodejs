@@ -38,6 +38,14 @@ class TeleBot extends TelegramBot {
     })
   }
 
+  getHelp() {
+    this.onText(commands.help, (data) => {
+      const id = data.from.id
+      console.log(`getHelp by ${data.from.username}`)
+      this.sendMessage(id, helpMessage)
+    })
+  }
+
   // Not Working
   getSticker() {
     this.on('sticker', (data) => {
@@ -127,6 +135,7 @@ class TeleBot extends TelegramBot {
   initialize() {
     console.log('Initializing Telegram Bot...')
     this.receiveMessage()
+    this.getHelp()
     this.getSticker()
     this.getGreeting()
     this.getUserMessage()
